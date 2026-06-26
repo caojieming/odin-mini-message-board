@@ -21,7 +21,7 @@ indexRouter.get("/", (req, res) => {
 });
 indexRouter.get("/new", (req, res) => {
   // res.render("newMessage", { users: users });
-  res.render("newMessage");
+  res.render("form");
 });
 
 
