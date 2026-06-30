@@ -1,6 +1,7 @@
 # odin-mini-message-board
 A simple message board created with Express.
 
+Todo: implement a "details" page for each message
 
 ## Extra info
 Run `npm install` to install all packages/dev dependencies.<br>

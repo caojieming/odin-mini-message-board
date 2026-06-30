@@ -20,6 +20,8 @@ app.use(express.static(assetsPath));
 const indexRouter = require("./routes/indexRouter");
 
 
+app.use(express.urlencoded({ extended: true }));
+
 app.use("/", indexRouter);
 
 
