@@ -7,11 +7,11 @@
   <body>
     <a href="/"><button>Back to Mini Messageboard</button></a>
 
-    <h1>Message Details!</h1>
+    <h1><%= title %></h1>
 
-    <p></p>
-    <p></p>
-    <p></p>
+    <p>Message Contents: <%= message.text %></p>
+    <p>Posted by: <%= message.user %></p>
+    <p>Datetime added: <%= message.added %></p>
     
     <%- include('footer') %>
   </body>

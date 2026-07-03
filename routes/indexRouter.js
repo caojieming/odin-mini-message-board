@@ -22,8 +22,10 @@ router.get("/", (req, res) => {
 router.get("/new", (req, res) => {
   res.render("form");
 });
-router.get("/details", (req, res) => {
-  res.render("details", );
+router.get("/details/:idx", (req, res) => {
+  const msgIdx = req.params.idx;
+  const msg = messages[msgIdx];
+  res.render("details", { title: "Message Details", message: msg });
 });
 
 router.post("/new", (req, res) => {
