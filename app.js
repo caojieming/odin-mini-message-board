@@ -1,5 +1,9 @@
-// load .env variables
-process.loadEnvFile()
+// load .env variables if it exists
+try {
+  process.loadEnvFile();
+} catch(error) {
+}
+
 
 // standard express import
 const express = require("express");
