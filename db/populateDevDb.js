@@ -1,27 +1,37 @@
 const { Client } = require("pg");
 const { argv } = require('node:process');
 
+// connects to .env file in root folder, this is needed here because just running this file misses the loadEnvFile() in app.js
+try {
+  process.loadEnvFile();
+} catch(error) {}
+
+
+// DROP TABLE IF EXISTS messages;
+// the above can be added or removed from the start as needed
 const SQL = `
+DROP TABLE IF EXISTS messages;
+
 CREATE TABLE IF NOT EXISTS messages (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  added TIMESTAMP,
-  user VARCHAR (255),
+  added TIMESTAMPTZ,
+  username VARCHAR (255),
   text VARCHAR (255)
 );
 
-INSERT INTO usernames (username) 
+INSERT INTO messages (added, username, text) 
 VALUES
-  ('Bryan'),
-  ('Odin'),
-  ('Damon');
+  ('2024-12-01 09:00:00z', 'Amando', 'Hi there!'),
+  ('2024-12-05 14:00:00z', 'Charles', 'Hello World!'),
+  ('2024-12-05 15:00:00z', 'Charles', 'Goodbye World!');
 `;
 
-// TODO: continue to work on inserting valid values into the local DB
+
 
 async function main() {
   console.log("seeding...");
   const client = new Client({
-    connectionString: `postgresql://${process.env.USER}:${process.env.PASSWORD}@localhost:5432/message_board`,
+    connectionString: `postgresql://${process.env.USER}:${process.env.PASSWORD}@localhost:${process.env.DBPORT}/${process.env.DATABASE}`,
   });
   await client.connect();
   await client.query(SQL);
