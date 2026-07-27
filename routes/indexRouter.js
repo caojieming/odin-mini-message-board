@@ -9,7 +9,7 @@ router.get("/", dbController.openHome);
 router.get("/new", dbController.openForm);
 router.post("/new", dbController.submitForm);
 
-router.get("/details/:idx", dbController.openDetails);
+router.get("/details/:id", dbController.openDetails);
 
 
 
