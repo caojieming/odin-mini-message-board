@@ -11,6 +11,8 @@ router.post("/new", dbController.submitForm);
 
 router.get("/details/:id", dbController.openDetails);
 
+router.post("/delete/:id", dbController.deleteMessage);
+
 
 
 module.exports = router;

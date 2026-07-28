@@ -12,6 +12,10 @@
     <p>Datetime added: <%= message.added %></p>
     <p>Message Contents: <%= message.text %></p>
     <p>Posted by: <%= message.username %></p>
+
+    <form id="delete-message" action="/delete/<%= message.id %>" method="post">
+      <button type="submit">Delete message</button>
+    </form>
     
     <%- include('footer') %>
   </body>

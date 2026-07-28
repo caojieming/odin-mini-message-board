@@ -19,31 +19,13 @@ async function getMessageDetails(id) {
   return row;
 }
 
+async function deleteMessage(id) {
+  await pool.query(`DELETE FROM messages WHERE id = '${id}'`);
+}
+
 module.exports = {
   getAllMessages,
   postNewMessage,
-  getMessageDetails
+  getMessageDetails,
+  deleteMessage
 };
-
-
-
-// async function getAllUsernames() {
-//   const { rows } = await pool.query("SELECT * FROM usernames");
-//   return rows;
-// }
-
-// async function searchUsernames(input) {
-//   const { rows } = await pool.query(`SELECT * FROM usernames WHERE username LIKE '%${input}%'`);
-//   console.log(rows);
-//   return rows;
-// }
-
-// async function deleteAllUsernames() {
-//   // DELETE FROM table_name;
-//   await pool.query("DELETE FROM usernames");
-// }
-
-
-// async function insertUsername(username) {
-//   await pool.query("INSERT INTO usernames (username) VALUES ($1)", [username]);
-// }
