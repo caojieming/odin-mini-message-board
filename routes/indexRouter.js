@@ -7,7 +7,7 @@ const dbController = require("../controllers/dbController");
 router.get("/", dbController.openHome);
 
 router.get("/new", dbController.openForm);
-router.post("/new", dbController.submitForm);
+router.post("/new", dbController.validateMessage, dbController.submitForm);
 
 router.get("/details/:id", dbController.openDetails);
 

@@ -10,10 +10,10 @@
     <a href="/new"><button>Add new message</button></a>
 
     <% for (let i = 0; i < messages.length; i++) { 
-      curUser = messages[i]; %>
+      curMsg = messages[i]; %>
       <p>
-        <a href="/details/<%= curUser.id %>"><button>See Details!</button></a>
-        <%= `[${curUser.added}] ${curUser.username}: ${curUser.text}` %>
+        <a href="/details/<%= curMsg.id %>"><button>See Details!</button></a>
+        <%= `[${curMsg.added}] ${curMsg.username}: ${curMsg.text}` %>
       </p>
     <% } %>
 

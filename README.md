@@ -18,3 +18,4 @@ Default server link: http://localhost:3000/
 - express
 - ejs
 - pg
+- express-validator
