@@ -1,24 +1,44 @@
 const { Client } = require("pg");
 const { argv } = require('node:process');
 
+// connects to .env file in root folder, this is needed here because just running this file misses the loadEnvFile() in app.js
+try {
+  process.loadEnvFile();
+} catch(error) {}
+
+
+// DROP TABLE IF EXISTS messages;
+// the above can be added or removed from the start as needed
 const SQL = `
-CREATE TABLE IF NOT EXISTS usernames (
+DROP TABLE IF EXISTS messages;
+
+CREATE TABLE IF NOT EXISTS messages (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  username VARCHAR ( 255 )
+  added TIMESTAMPTZ,
+  username VARCHAR (255),
+  text VARCHAR (255)
 );
 
-INSERT INTO usernames (username) 
+INSERT INTO messages (added, username, text) 
 VALUES
-  ('Bryan'),
-  ('Odin'),
-  ('Damon');
+  ('2024-12-01 09:00:00z', 'Amando', 'Hi there!'),
+  ('2024-12-05 14:00:00z', 'Charles', 'Hello World!'),
+  ('2024-12-05 15:00:00z', 'Charles', 'Goodbye World!');
 `;
 
+
 async function main() {
+  // default "npm run app" has 2 arguments: [0] node and [1] app.js. Extra argv[2] would be the URL to the DB
+  if(argv.length > 3) {
+    throw new Error("Too many arguments detected!");
+  }
+  else if(argv.length < 3) {
+    throw new Error("Too few arguments detected!");
+  }
+
   console.log("seeding...");
-  // INSERT PROD DB URL HERE
   const client = new Client({
-    connectionString: ``,
+    connectionString: argv[2],
   });
   await client.connect();
   await client.query(SQL);

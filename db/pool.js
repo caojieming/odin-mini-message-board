@@ -1,19 +1,31 @@
+const { argv } = require('node:process');
 const { Pool } = require("pg");
 
-// All of the following properties should be read from environment variables
-// We're hardcoding them here for simplicity
-// module.exports = new Pool({
-//   host: "localhost", // or wherever the db is hosted
-//   user: "<role_name>",
-//   database: "top_users",
-//   // password: "<role_password>",
-//   port: 5432 // The default port
-// });
+function getPool() {
+  console.log(`Detected ${argv.length - 2} extra arg(s)`);
 
-module.exports = new Pool({
-  host: process.env.HOST, 
-  user: process.env.USER,
-  database: process.env.DATABASE,
-  password: process.env.PASSWORD,
-  port: Number(process.env.DBPORT)
-});
+  // default "npm run app" has 2 arguments: [0] node and [1] app.js
+  if(argv.length < 3) {
+    return new Pool({
+      host: process.env.HOST, 
+      user: process.env.USER,
+      database: process.env.DATABASE,
+      password: process.env.PASSWORD,
+      port: Number(process.env.DBPORT)
+    })
+  }
+  else if(argv.length > 3) {
+    throw new Error("Too many arguments detected");
+  }
+  else {
+    // looking at the extra arg, aka arg[2]
+    // should be in the general format of: `postgresql://${process.env.USER}:${process.env.PASSWORD}@localhost:${process.env.DBPORT}/${process.env.DATABASE}`
+    return new Pool({
+      connectionString: argv[2]
+    })
+  }
+}
+
+// const pool = getPool();
+
+module.exports = getPool();

@@ -27,12 +27,26 @@ VALUES
 `;
 
 
-
 async function main() {
   console.log("seeding...");
-  const client = new Client({
-    connectionString: `postgresql://${process.env.USER}:${process.env.PASSWORD}@localhost:${process.env.DBPORT}/${process.env.DATABASE}`,
-  });
+  let client;
+
+  // default "npm run app" has 2 arguments: [0] node and [1] app.js. Extra argv[2] would be the URL to the DB
+  if(argv.length > 3) {
+    throw new Error("Too many arguments detected!");
+  }
+  else if(argv.length < 3) {
+    // default to .env DB
+    client = new Client({
+      connectionString: `postgresql://${process.env.USER}:${process.env.PASSWORD}@localhost:${process.env.DBPORT}/${process.env.DATABASE}`,
+    });
+  }
+  else {
+    client = new Client({
+      connectionString: argv[2],
+    });
+  }
+
   await client.connect();
   await client.query(SQL);
   await client.end();
