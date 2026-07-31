@@ -1,7 +1,9 @@
 # odin-mini-message-board
 A simple message board created with Express.
 
-Deployed using Railway: odin-mini-message-board-production-8924.up.railway.app
+Deployed using Railway (may expire soon): odin-mini-message-board-production-8924.up.railway.app
+
+Edit: implemented PostgreSQL database to store messages long term. Currently only works with a local PSQL DB.
 
 ## Extra info
 Run `npm install` to install all packages/dev dependencies.<br>
