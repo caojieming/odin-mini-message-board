@@ -5,7 +5,7 @@ A simple message board created with Express.
 
 ~~Edit: implemented PostgreSQL database to store messages long term. Currently only tested to work with a local PSQL DB, though theoretically should work on a hosted server + DB. Just run `npm run app <URL-to-DB>`.~~
 
-Deployed using Render with a connection to a PostGreSQL DB in Neon.<br>
+Deployed using Render with a connection to a PostGreSQL DB in Neon. Note that I'm using a free Render plan, and that when you first access the webpage, it may take a literal minute for the server to boot up (Render free plan puts the server to sleep if it has no activity for 15 minutes and wakes it up when needed). While it's waking up, it may say "Not found", which is normal.<br>
 Link: https://odin-mini-message-board-36li.onrender.com
 
 ## npm scripts included
