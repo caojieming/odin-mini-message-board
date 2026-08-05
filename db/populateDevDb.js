@@ -38,7 +38,7 @@ async function main() {
   else if(argv.length < 3) {
     // default to .env DB
     client = new Client({
-      connectionString: `postgresql://${process.env.USER}:${process.env.PASSWORD}@localhost:${process.env.DBPORT}/${process.env.DATABASE}`,
+      connectionString: process.env.LOCAL_DB_URL,
     });
   }
   else {
