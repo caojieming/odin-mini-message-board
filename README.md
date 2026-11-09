@@ -15,8 +15,8 @@ Opens an Express server for viewing changes in real time without needing to buil
 NEW: automatically connects to a local PostgreSQL DB (just make sure to fill out the .env variables).<br>
 Default server link: http://localhost:8080/<br>
 
-`npm run app <URL-to-DB>`<br>
-Starts the server with a connection to the given DB. Theoretically works with non-local DBs.<br>
+`npm run app <URL-to-DB>` OR `npm run app server` and add DB URL as the environmental variable SERVER_DB_URL<br>
+Starts the server with a connection to the given DB. Confirmed to work with non-local DBs.<br>
 
 ## Extra info
 Run `npm install` to install all packages/dev dependencies.<br>
